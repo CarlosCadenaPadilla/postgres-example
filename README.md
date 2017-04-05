@@ -1,15 +1,20 @@
-postgres-example
+# postgres-example
 
 _Descargar el contenedor de node: https://hub.docker.com/_/node/
 
-Crear el proyecto en github
+## Crear el proyecto en github
 
 Crear una carpeta que se llame postgres-example
-
+```
 mkdir postgres-example
 cd postgres-example
+```
+
+
+
 Crear un archivo que se llame package.json con el siguiente contenido
 
+```
 {
   "name": "postgres-example",
   "version": "1.0.0",
@@ -32,11 +37,13 @@ Crear un archivo que se llame package.json con el siguiente contenido
     "pg":"6.1.0"
   }
 }
+```
 Crear una carpeta src para almacenar el código fuente de la apliación:
-
+```
 mkdir src
+```
 Crear el primer archivo para nuestro primer servicio web que escuchará en el puerto 8888 en src/index.js
-
+```
 var express = require('express')
 var app = express()
 
@@ -47,9 +54,12 @@ app.get('/', function (req, res) {
 app.listen(8888, function () {
   console.log('Example app listening on port 8888!')
 })
+```
+
 Crear un repositorio en github para guardar este proyecto
 
-Docker con nodejs y npm
+
+## Docker con nodejs y npm
 
 Seguir los pasos en este tutorial para crear nuestro primer servidor con express
 
@@ -57,11 +67,14 @@ http://mherman.org/blog/2015/02/12/postgresql-and-nodejs/#.WOQVQiErKAI
 
 Crear el Dockerfile con el siguiente contenido
 
+```
 FROM node:4-onbuild
 # replace this with your application's default port
 EXPOSE 8888
+```
 Arrancar construir y arrancar el contenedor de nodejs
 
+```
 sudo docker build -t node-app .
 sudo docker run -it --rm --link some-postgres:postgresserver --name my-server-app node-app
-El contenedor correra la aplciacion que se encuentre referenciada por el archivo package.json
+```
